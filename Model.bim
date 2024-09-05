@@ -1,0 +1,840 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017",
+        "connectionString": "Provider=SQLOLEDB;Data Source=FLEX-5\\SQLEXPRESS;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=datawarehouse_AW_2017",
+        "impersonationMode": "impersonateAccount",
+        "account": "flex-5\\dicky",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Dim_CrossSelling",
+        "columns": [
+          {
+            "name": "CrossSellingID",
+            "dataType": "string",
+            "sourceColumn": "CrossSellingID",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductA",
+            "dataType": "string",
+            "sourceColumn": "ProductA",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductB",
+            "dataType": "string",
+            "sourceColumn": "ProductB",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "PairCount",
+            "dataType": "int64",
+            "sourceColumn": "PairCount",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_CrossSelling",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[Dim_CrossSelling].*   FROM [dbo].[Dim_CrossSelling] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Dim_CrossSelling].*   FROM [dbo].[Dim_CrossSelling] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_CrossSelling"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CategoryName",
+            "dataType": "string",
+            "sourceColumn": "CategoryName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SubCategoryName",
+            "dataType": "string",
+            "sourceColumn": "SubCategoryName",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProduct",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimProduct].*   FROM [dbo].[DimProduct] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Product_Hierarchy",
+            "levels": [
+              {
+                "name": "CategoryName",
+                "ordinal": 0,
+                "column": "CategoryName"
+              },
+              {
+                "name": "SubCategoryName",
+                "ordinal": 1,
+                "column": "SubCategoryName"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimProduct].*   FROM [dbo].[DimProduct] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimProduct"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimPromotion",
+        "columns": [
+          {
+            "name": "PromotionID",
+            "dataType": "int64",
+            "sourceColumn": "PromotionID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PromotionName",
+            "dataType": "string",
+            "sourceColumn": "PromotionName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StartDate",
+            "dataType": "string",
+            "sourceColumn": "StartDate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "EndDate",
+            "dataType": "string",
+            "sourceColumn": "EndDate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DiscountPercentage",
+            "dataType": "double",
+            "sourceColumn": "DiscountPercentage",
+            "sourceProviderType": "Numeric"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPromotion",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimPromotion].*   FROM [dbo].[DimPromotion] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimPromotion].*   FROM [dbo].[DimPromotion] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimPromotion"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimSalesChannel",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderChannel",
+            "dataType": "string",
+            "sourceColumn": "OrderChannel",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimSalesChannel",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimSalesChannel].*   FROM [dbo].[DimSalesChannel] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimSalesChannel].*   FROM [dbo].[DimSalesChannel] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimSalesChannel"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimTime",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "string",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DayNameOfWeek",
+            "dataType": "string",
+            "sourceColumn": "DayNameOfWeek",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MonthNumber",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumber",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DayNumberOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfMonth",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimTime",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimTime].*   FROM [dbo].[DimTime] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Time_hierarchy",
+            "levels": [
+              {
+                "name": "Year",
+                "ordinal": 0,
+                "column": "Year"
+              },
+              {
+                "name": "Quarter",
+                "ordinal": 1,
+                "column": "Quarter"
+              },
+              {
+                "name": "MonthNumber",
+                "ordinal": 2,
+                "column": "MonthNumber"
+              },
+              {
+                "name": "DayNumberOfMonth",
+                "ordinal": 3,
+                "column": "DayNumberOfMonth"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimTime].*   FROM [dbo].[DimTime] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimTime"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Fact_Product",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "string",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderQuantity",
+            "dataType": "int64",
+            "sourceColumn": "OrderQuantity",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "double",
+            "sourceColumn": "UnitPrice",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "UnitPriceDiscount",
+            "dataType": "double",
+            "sourceColumn": "UnitPriceDiscount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TotalDiscount",
+            "dataType": "double",
+            "sourceColumn": "TotalDiscount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "ActualCost",
+            "dataType": "double",
+            "sourceColumn": "ActualCost",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TotalCost",
+            "dataType": "double",
+            "sourceColumn": "TotalCost",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TotalRevenue",
+            "dataType": "double",
+            "sourceColumn": "TotalRevenue",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "NetSalesAmount",
+            "dataType": "double",
+            "sourceColumn": "NetSalesAmount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "Profit",
+            "dataType": "double",
+            "sourceColumn": "Profit",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "ProfitMargin",
+            "dataType": "double",
+            "sourceColumn": "ProfitMargin",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "PromotionID",
+            "dataType": "int64",
+            "sourceColumn": "PromotionID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PromotionRevenue",
+            "dataType": "double",
+            "sourceColumn": "PromotionRevenue",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "PromotionSalesVolume",
+            "dataType": "int64",
+            "sourceColumn": "PromotionSalesVolume",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PromotionProfit",
+            "dataType": "double",
+            "sourceColumn": "PromotionProfit",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "CrossSellingID",
+            "dataType": "string",
+            "sourceColumn": "CrossSellingID",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Product",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[Fact_Product].*   FROM [dbo].[Fact_Product] ",
+              "dataSource": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total_cost",
+            "expression": "sum(Fact_Product[TotalCost])"
+          },
+          {
+            "name": "total_orderQty",
+            "expression": "sum(Fact_Product[OrderQuantity])"
+          },
+          {
+            "name": "total_Revenue",
+            "expression": "sum(Fact_Product[TotalRevenue])"
+          },
+          {
+            "name": "total_netSales",
+            "expression": "sum(Fact_Product[NetSalesAmount])"
+          },
+          {
+            "name": "total_Profit",
+            "expression": "sum(Fact_Product[Profit])"
+          },
+          {
+            "name": "total_PromotionRevenue",
+            "expression": "sum(Fact_Product[PromotionRevenue])"
+          },
+          {
+            "name": "promotion_SalesVolume",
+            "expression": "sum(Fact_Product[PromotionSalesVolume])"
+          },
+          {
+            "name": "promotion_profit",
+            "expression": "sum(Fact_Product[PromotionProfit])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[Fact_Product].*   FROM [dbo].[Fact_Product] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Fact_Product"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "e98b55d9-16ee-4669-a5a4-5e00f39ff0b0",
+        "fromTable": "Fact_Product",
+        "fromColumn": "ProductID",
+        "toTable": "DimProduct",
+        "toColumn": "ProductID"
+      },
+      {
+        "name": "a935f324-bec5-43d0-a8e8-e65b8b43882f",
+        "fromTable": "Fact_Product",
+        "fromColumn": "DateKey",
+        "toTable": "DimTime",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "f679f372-a6f6-4cb5-9613-3ee9c8aef0b3",
+        "fromTable": "Fact_Product",
+        "fromColumn": "SalesOrderID",
+        "toTable": "DimSalesChannel",
+        "toColumn": "SalesOrderID"
+      },
+      {
+        "name": "bdd96db4-94ca-438c-bdf5-352400c46397",
+        "fromTable": "Fact_Product",
+        "fromColumn": "CrossSellingID",
+        "toTable": "Dim_CrossSelling",
+        "toColumn": "CrossSellingID"
+      },
+      {
+        "name": "03a5aecc-0336-4bcd-8c00-ef66ef2940bd",
+        "fromTable": "Fact_Product",
+        "fromColumn": "PromotionID",
+        "toTable": "DimPromotion",
+        "toColumn": "PromotionID"
+      }
+    ],
+    "perspectives": [
+      {
+        "name": "Product Popularity Analysis",
+        "tables": [
+          {
+            "name": "DimProduct",
+            "columns": [
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "ProductName"
+              },
+              {
+                "name": "SubCategoryName"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Product_Hierarchy"
+              }
+            ]
+          },
+          {
+            "name": "DimTime",
+            "columns": [
+              {
+                "name": "DateKey"
+              },
+              {
+                "name": "DayNameOfWeek"
+              },
+              {
+                "name": "MonthName"
+              },
+              {
+                "name": "MonthNumber"
+              },
+              {
+                "name": "Quarter"
+              },
+              {
+                "name": "Year"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Time_hierarchy"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Product",
+            "columns": [
+              {
+                "name": "OrderQuantity"
+              },
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "SalesOrderID"
+              },
+              {
+                "name": "TotalCost"
+              },
+              {
+                "name": "TotalRevenue"
+              }
+            ]
+          },
+          {
+            "name": "DimSalesChannel",
+            "columns": [
+              {
+                "name": "OrderChannel"
+              },
+              {
+                "name": "SalesOrderID"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Product Profitability Analysis",
+        "tables": [
+          {
+            "name": "DimProduct",
+            "columns": [
+              {
+                "name": "CategoryName"
+              },
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "ProductName"
+              },
+              {
+                "name": "SubCategoryName"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Product_Hierarchy"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Product",
+            "columns": [
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "Profit"
+              },
+              {
+                "name": "ProfitMargin"
+              },
+              {
+                "name": "TotalCost"
+              },
+              {
+                "name": "TotalRevenue"
+              },
+              {
+                "name": "SalesOrderID"
+              }
+            ]
+          },
+          {
+            "name": "DimSalesChannel",
+            "columns": [
+              {
+                "name": "OrderChannel"
+              },
+              {
+                "name": "SalesOrderID"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Promotional Targeting and Strategy",
+        "tables": [
+          {
+            "name": "Dim_CrossSelling",
+            "columns": [
+              {
+                "name": "CrossSellingID"
+              },
+              {
+                "name": "PairCount"
+              },
+              {
+                "name": "ProductA"
+              },
+              {
+                "name": "ProductB"
+              }
+            ]
+          },
+          {
+            "name": "DimProduct",
+            "columns": [
+              {
+                "name": "CategoryName"
+              },
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "ProductName"
+              },
+              {
+                "name": "SubCategoryName"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Product_Hierarchy"
+              }
+            ]
+          },
+          {
+            "name": "DimPromotion",
+            "columns": [
+              {
+                "name": "DiscountPercentage"
+              },
+              {
+                "name": "EndDate"
+              },
+              {
+                "name": "PromotionID"
+              },
+              {
+                "name": "PromotionName"
+              },
+              {
+                "name": "StartDate"
+              }
+            ]
+          },
+          {
+            "name": "DimSalesChannel",
+            "columns": [
+              {
+                "name": "OrderChannel"
+              },
+              {
+                "name": "SalesOrderID"
+              }
+            ]
+          },
+          {
+            "name": "DimTime",
+            "columns": [
+              {
+                "name": "DateKey"
+              },
+              {
+                "name": "DayNameOfWeek"
+              },
+              {
+                "name": "DayNumberOfMonth"
+              },
+              {
+                "name": "MonthName"
+              },
+              {
+                "name": "MonthNumber"
+              },
+              {
+                "name": "Quarter"
+              },
+              {
+                "name": "Year"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Time_hierarchy"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Product",
+            "columns": [
+              {
+                "name": "CrossSellingID"
+              },
+              {
+                "name": "ProductID"
+              },
+              {
+                "name": "PromotionID"
+              },
+              {
+                "name": "PromotionRevenue"
+              },
+              {
+                "name": "PromotionSalesVolume"
+              },
+              {
+                "name": "SalesOrderID"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
