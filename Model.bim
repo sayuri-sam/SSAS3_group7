@@ -6,9 +6,8 @@
     "dataSources": [
       {
         "name": "SqlServer FLEX-5SQLEXPRESS datawarehouse_AW_2017",
-        "connectionString": "Provider=SQLOLEDB;Data Source=FLEX-5\\SQLEXPRESS;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=datawarehouse_AW_2017",
-        "impersonationMode": "impersonateAccount",
-        "account": "flex-5\\dicky",
+        "connectionString": "Provider=SQLOLEDB;Data Source=BE432160;Persist Security Info=false;Initial Catalog=datawarehouse_AW_2017;User ID=sa",
+        "impersonationMode": "impersonateServiceAccount",
         "annotations": [
           {
             "name": "ConnectionEditUISource",
@@ -499,6 +498,18 @@
           {
             "name": "promotion_profit",
             "expression": "sum(Fact_Product[PromotionProfit])"
+          },
+          {
+            "name": "average_profitMargin",
+            "expression": "AVERAGE(Fact_Product[ProfitMargin])"
+          },
+          {
+            "name": "min_margin",
+            "expression": "min(Fact_Product[ProfitMargin])"
+          },
+          {
+            "name": "max_margin",
+            "expression": "max(Fact_Product[ProfitMargin])"
           }
         ],
         "annotations": [
